@@ -25,7 +25,7 @@
     form .row{display:flex;gap:12px;margin-bottom:12px}
     form .col{flex:1}
     label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    input[type="text"],input[type="email" ],select{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;font-size:15px}
+    input[type="text"],input[type="email"],input[type="password"],input[type="date"],select{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;font-size:15px}
     .small{font-size:13px;color:var(--muted);}
 
     .section-title{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
@@ -94,6 +94,13 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col">
+            <label for="dob">Date of birth</label>
+            <input id="dob" name="dob" type="date" required />
+          </div>
+        </div>
+
         <div style="margin-top:14px">
           <label for="address">Service address</label>
           <input id="address" name="address" type="text" placeholder="Unit / Street / Suburb / Postcode" />
@@ -143,7 +150,7 @@
         <div class="row">
           <div class="col">
             <label for="password">Choose password</label>
-            <input id="password" name="password" type="text" placeholder="Create a secure password" />
+            <input id="password" name="password" type="password" placeholder="Create a secure password" />
           </div>
           <div class="col">
             <label for="promo">Promo code (optional)</label>
@@ -154,8 +161,8 @@
         <div class="actions">
           <div style="display:flex;gap:8px;align-items:center">
             <button type="button" class="ghost" id="backBtn">Back</button>
-            <div class="small muted">Need help? <a href="#" onclick="alert('This is a mock demo.');return false">Contact support</a></div>
-            <button id="startCobrowseButton" disabled>Start CoBrowse</button>
+            <div class="small muted">Need help? </div>
+            <button class="primary" id="startCobrowseButton" disabled>Get Assistance</button>
 
           </div>
           <div>
@@ -191,8 +198,9 @@
           // simple validation mimic
           const first = document.getElementById('firstName').value.trim();
           const email = document.getElementById('email').value.trim();
-          if(!first || !email){
-            alert('Please provide at least a first name and email (this is a mock).');
+          const dob = document.getElementById('dob').value.trim();
+          if(!first || !email || !dob){
+            alert('Please provide at least a first name, email, and date of birth (this is a mock).');
             return;
           }
           // Fake navigation to payment
@@ -220,7 +228,6 @@
                 });
             }
         });
-
       </script>
     </main>
 
@@ -265,9 +272,6 @@
       data-enable-zcb="true"
       src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js">
   </script>
-  
-  
-  <script src="script.js"</script>
   <footer>
     This is a handcrafted mock page that imitates the layout and inputs from the Dodo signup "About you" checkout. Save the file as <code>mock-dodo-about-you.html</code> and open in your browser for a local demo.
   </footer>
