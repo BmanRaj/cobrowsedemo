@@ -1,216 +1,297 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dodo — Mock Checkout: About You</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodo — About You</title>
   <style>
-    :root{
-      --accent:#ff6a00;
-      --muted:#6b7280;
-      --bg:#f7fafc;
-      --card:#ffffff;
-      --radius:10px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    /* Brand colors */
+    :root {
+      --purple: #4b1e78;
+      --light-gray: #f5f5f7;
+      --border-gray: #ddd;
+      --text-color: #333;
+      --heading-color: #4b1e78
     }
-    html,body{height:100%;margin:0;background:var(--bg);}
-    .container{max-width:1100px;margin:36px auto;padding:24px;display:grid;grid-template-columns:1fr 380px;gap:24px}
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:0 6px 18px rgba(20,20,30,0.06);padding:28px}
 
-    header.brand{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-    .logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#ff9a3a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-    h1{font-size:20px;margin:6px 0}
-    p.lead{color:var(--muted);margin:0 0 18px 0}
-
-    form .row{display:flex;gap:12px;margin-bottom:12px}
-    form .col{flex:1}
-    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    input[type="text"],input[type="email"],input[type="password"],input[type="date"],select{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;font-size:15px}
-    .small{font-size:13px;color:var(--muted);}
-
-    .section-title{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
-    .step{background:#eef2ff;color:#3730a3;padding:6px 10px;border-radius:8px;font-weight:600}
-
-    .plans{display:flex;flex-direction:column;gap:10px}
-    .plan{border:1px solid #eef0f3;padding:12px;border-radius:8px;display:flex;align-items:center;justify-content:space-between}
-    .plan.selected{border-color:var(--accent);box-shadow:0 6px 24px rgba(255,106,0,0.08)}
-
-    .summary{font-size:14px;color:var(--muted)}
-
-    .actions{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
-    button.primary{background:var(--accent);color:white;padding:10px 16px;border:none;border-radius:8px;font-weight:700}
-    button.ghost{background:transparent;border:1px solid #e6e9ef;padding:10px 12px;border-radius:8px}
-
-    .side{position:relative}
-    .side .card{position:sticky;top:24px}
-    .price{font-size:22px;font-weight:700;color:#111827}
-    .muted{color:var(--muted);font-size:13px}
-
-    footer{max-width:1100px;margin:18px auto;padding:8px 24px;color:var(--muted);font-size:13px}
-
-    @media (max-width:980px){
-      .container{grid-template-columns:1fr;padding:12px}
-      .side .card{position:static}
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      background-color: #fff;
+      font-size: small;
     }
+
+    /* Header / branding */
+    header {
+      background-color: var(--purple);
+      padding: 16px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    header img {
+      height: 50px;
+      margin-right: 18px;
+    }
+
+    /* Main container with two panels */
+    .main {
+      display: flex;
+      max-width: 1000px;
+      margin: 24px auto;
+      gap: 24px;
+      padding: 0 16px;
+    }
+
+    /* Left panel — form section */
+    .form-panel {
+      flex: 1.2;
+    }
+
+    .steps {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .steps .step {
+      position: relative;
+      padding-bottom: 10px;
+      font-weight: bold;
+      color: var(--heading-color);
+    }
+
+    .steps .step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 2px;
+      background-color: var(--border-gray);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: var(--heading-color);
+      margin: 0 0 8px;
+    }
+
+    p.subtitle {
+      margin: 0 0 24px;
+      color: #666;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    form input {
+      padding: 12px;
+      font-size: 12px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Delivery question section */
+    .delivery-info {
+      margin-top: 24px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .yesno-buttons {
+      margin-top: 8px;
+    }
+
+    .yesno-buttons button {
+      padding: 10px 20px;
+      margin-right: 8px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .yesno-buttons button.selected {
+      background-color: var(--purple);
+      color: #fff;
+      border-color: var(--purple);
+    }
+
+    .consent {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: #555;
+    }
+
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      float: right;
+    }
+
+    .actions button {
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+    .actions .continue {
+      background-color: #bbb;
+      color: #fff;
+    }
+    .actions .back {
+      background-color: #fff;
+      border: 1px solid #bbb;
+    }
+
+    /* Right panel — order summary */
+    .summary-panel {
+      flex: 0.8;
+      background-color: #fff;
+      border: 1px solid var(--border-gray);
+      border-radius: 6px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      font-size: 14px;
+    }
+
+    .summary-panel h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--heading-color);
+      margin-bottom: 12px;
+    }
+
+    .summary-panel .address {
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .summary-panel .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .summary-panel .section-title {
+      margin-top: 16px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .summary-panel .total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      font-weight: bold;
+      color: var(--purple);
+    }
+
+    .help {
+      padding-left: 50%;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+.cobrowse {
+  font-size: medium;
+  color: var(--purple)
+}
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <main class="card">
-      <header class="brand">
-        <div class="logo">D</div>
-        <div>
-          <div class="muted">Dodo — mock checkout</div>
-          <h1>About you</h1>
-        </div>
-      </header>
-      <p class="lead">Finish creating your account so we can provision your plan. This is a mocked demo of the real "About you" checkout page — fields are non-functional and safe for demos.</p>
+  <header>
+    <!-- Replace with actual logo image source -->
+    <img src="https://cloud.shopback.com/c_scale,c_auto,q_70,f_webp/media-production-aps2/ABkSCa03O40/aHR0cHM6Ly9pbWFnZXMuYmFubmVyYmVhci5jb20vZGlyZWN0L0VHQnFwQVo1T2U5MTg5VkROSi9yZXF1ZXN0cy8wMDAvMDQ4LzgwNC8zODAvUHdBVjVyTU5xNk9wMFc5WlFrQm0yNzRPcC9lMjhlYWJiYjFiYmNkOGVlYjE0ZjFlYjYyZjgyMDQ0MDE0YzgxYTdmLnBuZw.jpg" alt="Dodo Logo">
+    <span>Checkout in a few easy steps</span>
+      <div class="help" >
+        <button class="cobrowse" id= "startCobrowseButton" disabled>Get Assistance</button>
+      </div>
+  
+  </header>
 
-      <div class="section-title">
-        <div class="step">Step 2 of 3</div>
-        <div class="muted">Tell us about the account holder</div>
+  <div class="main">
+    <div class="form-panel">
+      <div class="steps">
+        <div class="step">About you</div>
+        <div class="step" style="color: #ccc;">Service setup</div>
+        <div class="step" style="color: #ccc;">Payment details</div>
       </div>
 
-      <form id="aboutForm" autocomplete="on" onsubmit="return false">
-        <div class="row">
-          <div class="col">
-            <label for="firstName">First name</label>
-            <input id="firstName" name="firstName" type="text" placeholder="e.g. Jamie" required />
-          </div>
-          <div class="col">
-            <label for="lastName">Last name</label>
-            <input id="lastName" name="lastName" type="text" placeholder="e.g. Smith" required />
-          </div>
-        </div>
+      <h1>Tell us about yourself</h1>
+      <p class="subtitle">Please provide your details exactly as they appear on your I.D.</p>
 
-        <div class="row">
-          <div class="col">
-            <label for="email">Email address</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-          </div>
-          <div class="col">
-            <label for="phone">Mobile number</label>
-            <input id="phone" name="phone" type="text" placeholder="04 1234 5678" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label for="dob">Date of birth</label>
-            <input id="dob" name="dob" type="date" required />
-          </div>
-        </div>
-
-        <div style="margin-top:14px">
-          <label for="address">Service address</label>
-          <input id="address" name="address" type="text" placeholder="Unit / Street / Suburb / Postcode" />
-          <div class="small" style="margin-top:8px">If you can't change the address above it's because this mock preserves the real checkout's behaviour — this is a static demo.</div>
-        </div>
-
-        <div class="section-title">
-          <div class="step">Choose a plan</div>
-        </div>
-
-        <div class="plans" role="list">
-          <div class="plan selected" data-plan="basic" role="listitem">
-            <div>
-              <div style="font-weight:700">NBN Basic — 50/20</div>
-              <div class="muted">Good for light browsing and streaming</div>
-            </div>
-            <div style="text-align:right">
-              <div class="price">$59</div>
-              <div class="muted">/ month</div>
-            </div>
-          </div>
-
-          <div class="plan" data-plan="plus" role="listitem">
-            <div>
-              <div style="font-weight:700">NBN Plus — 100/40</div>
-              <div class="muted">For households that stream and game</div>
-            </div>
-            <div style="text-align:right">
-              <div class="price">$79</div>
-              <div class="muted">/ month</div>
-            </div>
-          </div>
-
-          <div class="plan" data-plan="pro" role="listitem">
-            <div>
-              <div style="font-weight:700">NBN Pro — 250/100</div>
-              <div class="muted">Power users and multi-device homes</div>
-            </div>
-            <div style="text-align:right">
-              <div class="price">$109</div>
-              <div class="muted">/ month</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-title" style="margin-top:18px"><div class="muted">Account security</div></div>
-        <div class="row">
-          <div class="col">
-            <label for="password">Choose password</label>
-            <input id="password" name="password" type="password" placeholder="Create a secure password" />
-          </div>
-          <div class="col">
-            <label for="promo">Promo code (optional)</label>
-            <input id="promo" name="promo" type="text" placeholder="Enter code" />
-          </div>
-        </div>
-
-        <div class="actions">
-          <div style="display:flex;gap:8px;align-items:center">
-            <button type="button" class="ghost" id="backBtn">Back</button>
-            <div class="small muted">Need help? </div>
-            <button class="primary" id="startCobrowseButton" disabled>Get Assistance</button>
-
-          </div>
-          <div>
-            <button type="button" class="primary" id="continueBtn">Continue to payment</button>
-          </div>
-        </div>
+      <form>
+        <input type="text" placeholder="First name*" required>
+        <input type="text" placeholder="Last name*" required>
+        <input id="email" type="email" placeholder="Email address*" required>
+        <input id="email" type="email" placeholder="Confirm email address*" required>
+        <input id="dob" type="date" placeholder="Date of birth*" required>
+        <input type="tel" placeholder="Mobile number*" required>
       </form>
 
-      <script>
-        // Minimal interactivity to mimic selection behaviour from the real page
-        document.querySelectorAll('.plan').forEach(p=>{
-          p.addEventListener('click',()=>{
-            document.querySelectorAll('.plan').forEach(x=>x.classList.remove('selected'));
-            p.classList.add('selected');
-            // update price on side (if present)
-            updateSummary();
-          })
-        })
+      <div class="delivery-info">
+        <p>Your modem will be delivered within 3–5 business days.<br>
+        Should we deliver this to the same address?</p>
+        <div class="yesno-buttons">
+          <button class="selected">YES</button>
+          <button>NO</button>
+        </div>
+      </div>
 
-        function updateSummary(){
-          const sel = document.querySelector('.plan.selected');
-          if(!sel) return;
-          const price = sel.querySelector('.price').innerText;
-          const name = sel.querySelector('div > div').innerText;
-          const el = document.getElementById('summaryPrice');
-          if(el){ el.innerText = price + ' / month'; }
-          const eln = document.getElementById('summaryPlan');
-          if(eln){ eln.innerText = name; }
-        }
+      <p class="consent">
+        By clicking ‘Continue’, you consent to the collection and use of your personal information by Dodo Services Pty Ltd which will be handled in accordance with our privacy policy, for the purpose of providing products and services to you and for marketing purposes including direct marketing, and you agree that your consent will remain valid until the date on which you unsubscribe by clicking on a relevant link or via our Preference Centre.
+      </p>
 
-        document.getElementById('continueBtn').addEventListener('click',()=>{
-          const f = document.getElementById('aboutForm');
-          // simple validation mimic
-          const first = document.getElementById('firstName').value.trim();
-          const email = document.getElementById('email').value.trim();
-          const dob = document.getElementById('dob').value.trim();
-          if(!first || !email || !dob){
-            alert('Please provide at least a first name, email, and date of birth (this is a mock).');
-            return;
-          }
-          // Fake navigation to payment
-          alert('Mock: going to payment step.');
-        })
+      <div class="actions">
+        <button class="continue" disabled>CONTINUE</button>
+        <button class="back">BACK</button>
+      </div>
+    </div>
 
-        // init
-        updateSummary();
-        
-        // Listen for the ZoomZccCobrowseSDK:Ready event
+    <div class="summary-panel">
+      <h2>Your order</h2>
+      <div class="address">12 George St, Sydney NSW 2000</div>
+      <div class="section-title">Internet</div>
+      <div class="item"><span>Due today</span><span>$7.50</span></div>
+      <div class="item"><span>Family modem</span><span>$7.50</span></div>
+      <div class="section-title">Monthly plan</div>
+      <div class="item"><span>Unlimited plan, nbn25</span><span>$71.99</span></div>
+      <div class="item"><span>Plan discount</span><span>−$25.00</span></div>
+      <div class="total"><span>Total</span><span>$46.99</span></div>
+    </div>
+  </div>
+</body>
+
+
+<script
+      data-apikey="Q_ty2k4uSJ2UTwLnfGCwqA"
+      data-env="us01"
+      data-enable-zcb="true"
+      src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js">
+  </script>
+
+  
+<script>
+// Listen for the ZoomZccCobrowseSDK:Ready event
         window.addEventListener('ZoomZccCobrowseSDK:Ready', function(event) {
             const button = document.getElementById('startCobrowseButton'); // Your custom button ID
 
@@ -229,51 +310,4 @@
             }
         });
       </script>
-    </main>
-
-    <aside class="side">
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-          <div>
-            <div class="muted">Selected plan</div>
-            <div id="summaryPlan" style="font-weight:700;margin-top:6px">NBN Basic — 50/20</div>
-          </div>
-          <div style="text-align:right">
-            <div id="summaryPrice" class="price">$59 / month</div>
-            <div class="muted">Billed monthly</div>
-          </div>
-        </div>
-
-        <hr style="border:none;border-top:1px solid #eef0f3;margin:12px 0" />
-
-        <div class="summary">
-          <div style="margin-bottom:8px">You are signing up as the account holder. We'll use the contact details above to contact you about provisioning and delivery (mocked in this demo).</div>
-
-          <div style="display:flex;justify-content:space-between;margin-top:12px">
-            <div class="muted">Estimated setup</div>
-            <div class="muted">Free</div>
-          </div>
-
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <div class="muted">First month</div>
-            <div class="muted">$59</div>
-          </div>
-
-          <div style="margin-top:14px;font-size:13px;color:var(--muted)">This is a static mock intended for demos only. No data is transmitted to any provider.</div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px;font-size:12px;color:var(--muted)">Privacy • Terms • Cookies</div>
-    </aside>
-  </div>
-  <script
-      data-apikey="Q_ty2k4uSJ2UTwLnfGCwqA"
-      data-env="us01"
-      data-enable-zcb="true"
-      src="https://us01ccistatic.zoom.us/us01cci/web-sdk/zcc-sdk.js">
-  </script>
-  <footer>
-    This is a handcrafted mock page that imitates the layout and inputs from the Dodo signup "About you" checkout. Save the file as <code>mock-dodo-about-you.html</code> and open in your browser for a local demo.
-  </footer>
-</body>
 </html>
